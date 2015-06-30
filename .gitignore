@@ -1,0 +1,15 @@
+/target/
+
+.settings/
+.project
+.classpath
+log/
+src/test/
+src/main/java/com/guozhong/proxy/ProxyIpUtil.java
+src/main/java/com/guozhong/cluster
+src/main/java/com/guozhong/model/Config.java
+src/main/java/com/guozhong/ssh/
+src/main/java/config.xml
+src/main/resources/config.xml
+doc/
+project/
