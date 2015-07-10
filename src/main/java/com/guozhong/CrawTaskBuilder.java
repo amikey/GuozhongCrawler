@@ -22,9 +22,11 @@ import com.guozhong.downloader.impl.WebDriverDownloader;
 import com.guozhong.listener.SetCookieHttpClientLifeListener;
 import com.guozhong.listener.SetCookieWebDriverLifeListener;
 import com.guozhong.proxy.ProxyIpPool;
+import com.guozhong.queue.DelayedBlockingQueue;
 import com.guozhong.queue.DelayedPriorityBlockingQueue;
 import com.guozhong.queue.RedisRequestBlockingQueue;
 import com.guozhong.queue.RequestPriorityBlockingQueue;
+import com.guozhong.queue.SimpleBlockingQueue;
 import com.guozhong.request.Cookie;
 import com.guozhong.request.PageRequest.PageEncoding;
 import com.guozhong.thread.CountableThreadPool;
@@ -191,6 +193,25 @@ public class CrawTaskBuilder {
 		} catch (IllegalAccessException e) {
 			e.printStackTrace();
 		}
+		return this;
+	}
+	
+	/**
+	 * SimpleBlockingQueue采用先进先出的FIFO原则。广度优先策略合适的队列
+	 * @return
+	 */
+	public CrawTaskBuilder useQueueSimpleBlockingRequest(){
+		crawlTask.setRequestQueue(new SimpleBlockingQueue());
+		return this;
+	}
+	
+	/**
+	 * DelayedBlockingQueue和SimpleBlockingQueue一样采用先进先出的FIFO原则。广度优先策略合适的队列、
+	 * 但是增加了设置延时的特性
+	 * @return
+	 */
+	public CrawTaskBuilder useQueueQueueDelayedRequest(int delayInMilliseconds){
+		crawlTask.setRequestQueue(new DelayedBlockingQueue(delayInMilliseconds));
 		return this;
 	}
 	

@@ -11,6 +11,7 @@ import javax.net.ssl.SSLContext;
 import org.apache.http.HttpHost;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.config.RequestConfig;
+import org.apache.http.client.params.ClientPNames;
 import org.apache.http.config.ConnectionConfig;
 import org.apache.http.config.Registry;
 import org.apache.http.config.RegistryBuilder;

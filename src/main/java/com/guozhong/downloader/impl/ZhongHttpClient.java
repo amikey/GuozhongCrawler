@@ -9,6 +9,7 @@ import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpRequestBase;
+import org.apache.http.client.params.ClientPNames;
 import org.apache.http.conn.ClientConnectionManager;
 import org.apache.http.impl.client.BasicCookieStore;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -60,6 +61,7 @@ public final class ZhongHttpClient{
 		}
 		this.cookieStore = cookieStore;
 		core = httpClientFactory.buildDefaultHttpClient(cookieStore);
+		
 	}
 	
 	

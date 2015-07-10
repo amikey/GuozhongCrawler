@@ -95,12 +95,12 @@ public class DefaultPageDownloader extends PageDownloader{
 					log.info(ip+"使用达到"+proxyIpPool.getMaxUseCount()+"次");
 				}else{
 					ip.markCache();//缓存IP
-					log.info(ip+"使用成功");
+				//	log.info(ip+"使用成功");
 				}
 				return page;
 			} catch (ProxyIpLoseException e) {
 				proxyIpRequestCount++;
-				log.info(request.getUrl()+" "+ip+">下载失败");
+				//log.info(request.getUrl()+" "+ip+">下载失败");
 				continue;
 			} 
 		}
@@ -160,7 +160,6 @@ public class DefaultPageDownloader extends PageDownloader{
 					exception = new ProxyIpLoseException(ip.toString());
 				}else{
 					page = pageFactory.buildRetryPage(request , httpClientPool , client.getIndex());
-					e.printStackTrace();
 				}
 			}else{
 				page = pageFactory.buildRetryPage(request , httpClientPool , client.getIndex());
@@ -237,6 +236,7 @@ public class DefaultPageDownloader extends PageDownloader{
 		Map<String,String> headers = getFirefoxHeaders();
 		headers.putAll(custom_headers);//覆盖自定义请求头
 		Set<Entry<String, String>> keyValues = headers.entrySet();
+		Builder builder = RequestConfig.custom().setSocketTimeout(10*1000).setConnectTimeout(10*1000).setRedirectsEnabled(false);
 		switch(request.getMethod()){
 			case GET:
 				HttpGet get = new HttpGet(request.getUrl());
@@ -244,7 +244,7 @@ public class DefaultPageDownloader extends PageDownloader{
 				for (Entry<String, String> entry : keyValues) {
 					get.setHeader(entry.getKey(), entry.getValue());
 				}
-				
+				get.setConfig(builder.build());
 				return get;
 			case POST:
 				HttpPost post = new HttpPost(request.getUrl());
@@ -262,6 +262,7 @@ public class DefaultPageDownloader extends PageDownloader{
 					}
 					post.setEntity(new UrlEncodedFormEntity(nameValuePairs)); 
 				}
+				post.setConfig(builder.build());
 				return post;
 		}
 		return null;

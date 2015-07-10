@@ -1,6 +1,8 @@
 package com.guozhong.downloader.impl;
 
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -13,6 +15,7 @@ import com.gargoylesoftware.htmlunit.NicelyResynchronizingAjaxController;
 import com.gargoylesoftware.htmlunit.Page;
 import com.gargoylesoftware.htmlunit.WebClient;
 import com.gargoylesoftware.htmlunit.WebResponse;
+import com.gargoylesoftware.htmlunit.WebWindow;
 import com.gargoylesoftware.htmlunit.util.Cookie;
 
 /**
@@ -121,4 +124,26 @@ public final class ZhongWebDriver extends HtmlUnitDriver implements JavaScriptDr
 		return super.executeAsyncScript(script, args);
 	}
 	
+	public void setWebWindow(WebWindow webWindow){
+		try {
+			Method method = HtmlUnitDriver.class.getMethod("finishSelecting", WebWindow.class);
+			method.setAccessible(true);
+			method.invoke(this, webWindow);
+			method.setAccessible(false);
+		} catch (NoSuchMethodException e) {
+			e.printStackTrace();
+		} catch (SecurityException e) {
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+		} catch (IllegalArgumentException e) {
+			e.printStackTrace();
+		} catch (InvocationTargetException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public WebWindow getWebWindow(){
+		return super.getCurrentWindow();
+	}
 }

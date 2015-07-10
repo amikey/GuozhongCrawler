@@ -3,6 +3,8 @@
 .settings/
 .project
 .classpath
+.mygit
+.wecashgit
 log/
 src/test/
 src/main/java/com/guozhong/proxy/ProxyIpUtil.java

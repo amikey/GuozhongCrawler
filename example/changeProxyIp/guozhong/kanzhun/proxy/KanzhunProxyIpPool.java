@@ -14,7 +14,7 @@ import com.guozhong.proxy.ProxyIp;
 import com.guozhong.proxy.ProxyIpPool;
 
 public class KanzhunProxyIpPool extends ProxyIpPool {
-	public static final String IP_RESOURCE = "你的代理IP请求地址";//地址请求的个数必须设置为initProxyIp(int size)中size的个数
+	public static final String IP_RESOURCE = "地址忽略";//地址请求的个数必须设置为initProxyIp(int size)中size的个数
 	public KanzhunProxyIpPool(int initSize, long pastTime, int max_use_count) {
 		super(initSize, pastTime, max_use_count);
 	}
