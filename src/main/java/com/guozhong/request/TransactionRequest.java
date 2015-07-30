@@ -3,6 +3,7 @@ package com.guozhong.request;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
 import com.guozhong.component.Pipeline;
@@ -20,7 +21,7 @@ import com.guozhong.util.ProccessableUtil;
  * @QQ群  202568714
  *
  */
-public abstract class TransactionRequest extends BasicRequest implements TransactionCallBack{
+public abstract class TransactionRequest extends AttributeRequest implements TransactionCallBack{
 	
 	/**
 	 * 事务处理可以含有多个Request
@@ -46,31 +47,7 @@ public abstract class TransactionRequest extends BasicRequest implements Transac
 		this.pipeline = pipeline;
 	}
 
-	@Override
-	public BasicRequest addAttribute(String attribute, Object value) {
-		Iterator<BasicRequest> iter = multiRequests.iterator();
-		BasicRequest basicRequest = null;
-		while(iter.hasNext()){
-			basicRequest = iter.next();
-			basicRequest.addAttribute(attribute, value);
-		}
-		return this;
-	}
-  
-	@Override
-	public Object getAttribute(String attribute) {
-		Object value = null;
-		Iterator<BasicRequest> iter = multiRequests.iterator();
-		BasicRequest basicRequest = null;
-		while(iter.hasNext()){
-			basicRequest = iter.next();
-			value = basicRequest.getAttribute(attribute);
-			if(value != null)
-				break;
-		}
-		return value;
-	}
-	
+
 	/**
 	 * 添加一个BasicRequest到TransactionRequest的child中
 	 * @param request

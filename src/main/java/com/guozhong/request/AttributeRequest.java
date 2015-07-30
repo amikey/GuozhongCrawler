@@ -1,6 +1,7 @@
 package com.guozhong.request;
 
 import java.util.HashMap;
+import java.util.Set;
 
 /**
  * AttributeRequest是BasicRequest操作是属性的实现。
@@ -11,25 +12,32 @@ import java.util.HashMap;
 public class AttributeRequest extends BasicRequest {
 	
 	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	/**
      * request属性
      */
-    private HashMap<String,Object> attributes = null;
+    protected HashMap<String,Object> attributes = new HashMap<String, Object>();
 
 	@Override
 	public BasicRequest addAttribute(String attribute, Object value) {
-		if(attributes == null){
-    		attributes = new HashMap<String,Object>();
-    	}
     	attributes.put(attribute, value);
     	return this;
 	}
 
 	@Override
 	public Object getAttribute(String attribute) {
-		if(attributes == null){
-    		return null;
-    	}
-    	return attributes.get(attribute);
+		Object value = attributes.get(attribute);
+		if(value == null && parentRequest != null){
+			value = parentRequest.getAttribute(attribute);
+		}
+    	return value;
+	}
+
+	@Override
+	public Set<String> enumAttributeNames() {
+		return attributes.keySet();
 	}
 
 }

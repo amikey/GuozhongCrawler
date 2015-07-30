@@ -17,6 +17,8 @@ public class Cookie {
 	private String path;
 	
 	private Date expiry;
+	
+	private boolean secure;
 
 	public Cookie(String name, String value) {
 		super();
@@ -57,6 +59,14 @@ public class Cookie {
 		this.expiry = expiry;
 	}
 
+	public boolean isSecure() {
+		return secure;
+	}
+
+	public void setSecure(boolean secure) {
+		this.secure = secure;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -65,6 +75,7 @@ public class Cookie {
 		result = prime * result + ((expiry == null) ? 0 : expiry.hashCode());
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		result = prime * result + ((path == null) ? 0 : path.hashCode());
+		result = prime * result + (secure ? 1231 : 1237);
 		result = prime * result + ((value == null) ? 0 : value.hashCode());
 		return result;
 	}
@@ -98,6 +109,8 @@ public class Cookie {
 				return false;
 		} else if (!path.equals(other.path))
 			return false;
+		if (secure != other.secure)
+			return false;
 		if (value == null) {
 			if (other.value != null)
 				return false;
@@ -105,7 +118,12 @@ public class Cookie {
 			return false;
 		return true;
 	}
-	
-	
 
+	@Override
+	public String toString() {
+		return "Cookie [name=" + name + ", value=" + value + ", domain="
+				+ domain + ", path=" + path + ", expiry=" + expiry
+				+ ", secure=" + secure + "]";
+	}
+	
 }

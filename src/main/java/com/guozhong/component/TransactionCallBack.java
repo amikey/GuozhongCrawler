@@ -21,6 +21,6 @@ public interface TransactionCallBack {
 	 * @param queue  
 	 * @throws Exception
 	 */
-	public void callBack(TransactionRequest transactionRequest , List<Proccessable> objectContainer)throws Exception;
+	void callBack(TransactionRequest transactionRequest , List<Proccessable> objectContainer)throws Exception;
 	
 }

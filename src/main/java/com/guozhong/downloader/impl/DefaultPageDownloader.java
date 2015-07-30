@@ -272,6 +272,7 @@ public class DefaultPageDownloader extends PageDownloader{
 		Map<String,String> headers = new HashMap<String,String>();
 		headers.put("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8");
 		headers.put("Accept-Encoding", "gzip, deflate");
+		headers.put("Connection", "keep-alive");
 		headers.put("Accept-Language", "zh-cn,zh;q=0.8,en-us;q=0.5,en;q=0.3");
 		headers.put("User-Agent", "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:35.0) Gecko/20100101 Firefox/35.0");
 		return headers;

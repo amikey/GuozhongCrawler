@@ -6,6 +6,8 @@ package com.guozhong.page;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
 import org.openqa.selenium.WebElement;
 
 import com.guozhong.downloader.driverpool.DriverPoolInterface;
@@ -41,6 +43,10 @@ public class OkPage extends Page {
 	    public String getContent() {
 	        return this.content;
 	    }
+	    
+	    public Document buildJsoupDoc(){
+	    	return Jsoup.parse(content);
+	    }
 
 
 	    public Status getStatus() {
@@ -65,7 +71,4 @@ public class OkPage extends Page {
 		public Object getRequestAttribute(String attribute) {
 			return request.getAttribute(attribute);
 		}
-		
-		
-		
 }

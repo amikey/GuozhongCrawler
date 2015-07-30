@@ -136,6 +136,7 @@ public final class ZhongChromeDriver extends org.openqa.selenium.chrome.ChromeDr
     		item.setDomain(cookie.getDomain());
     		item.setExpiry(cookie.getExpiry());
     		item.setPath(cookie.getPath());
+    		item.setSecure(cookie.isSecure());
     		collection.add(item);
 		}
     }

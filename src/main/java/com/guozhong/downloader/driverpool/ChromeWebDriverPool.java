@@ -19,7 +19,6 @@ import com.guozhong.downloader.impl.ZhongHttpClient;
 
 /**
  * 目前只会缓存能不执行JS的Driver，因为能执行JS的Driver在多次执行后会出现报错
- * @author code4crafter@gmail.com <br>
  * Date: 13-7-26 <br>
  * Time: 下午1:41 <br>
  */
@@ -177,7 +176,6 @@ public final class ChromeWebDriverPool extends DriverPoolInterface{
 		if(getIndexs.contains(driverIndex)){
 			return null;
 		}else{
-			System.out.println("拿出"+driverIndex);
 			getIndexs.add(driverIndex);
 		}
 		for (com.guozhong.downloader.impl.ZhongChromeDriver client : webDriverList) {

@@ -197,6 +197,19 @@ public class CrawTaskBuilder {
 	}
 	
 	/**
+	 * 如果你想在单个StartContext中直接初始化跟进URL，或者让爬虫分批注入种子的话。那么DynamicEntrance提供了这样的接口
+	 * @param dynamicEntrance 实例
+	 * @return
+	 */
+	public CrawTaskBuilder useDynamicEntranceInstance(DynamicEntrance dynamicEntrance){
+			if(dynamicEntrance == null){
+				throw new NullPointerException();
+			}
+			crawlTask.setDynamicEntrance(dynamicEntrance);
+		return this;
+	}
+	
+	/**
 	 * SimpleBlockingQueue采用先进先出的FIFO原则。广度优先策略合适的队列
 	 * @return
 	 */

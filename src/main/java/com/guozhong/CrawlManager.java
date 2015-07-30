@@ -100,6 +100,7 @@ public class CrawlManager{
 	 * 销毁任务
 	 */
 	public void destoryCrawTask(String taskName){
+		System.out.println("销毁："+taskName);
 		allTask.remove(taskName);
 	}
 	
@@ -110,6 +111,10 @@ public class CrawlManager{
 	 */
 	public CrawlTask getCrawlTask(String name){
 		return allTask.get(name);
+	}
+	
+	public boolean hasRunCrawTask(){
+		return !allTask.isEmpty();
 	}
 	
 	/**

@@ -1,6 +1,8 @@
 package com.guozhong.request;
 
 import java.io.Serializable;
+import java.util.List;
+import java.util.Set;
 
 
 /**
@@ -108,7 +110,14 @@ public abstract class BasicRequest implements Comparable<BasicRequest> ,Serializ
 	 * @param attribute
 	 * @return 返回attribute属性对应的value。没有则返回null
 	 */
-	public  abstract Object getAttribute(String attribute);
+	public abstract Object getAttribute(String attribute);
+	
+	/**
+	 * 枚举所有的属性名
+	 * @param attribute
+	 * @return
+	 */
+	public abstract Set<String> enumAttributeNames();
     
     
 }

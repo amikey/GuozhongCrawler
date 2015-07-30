@@ -49,4 +49,5 @@ public abstract class PageDownloader implements Closeable{
 	}
     
     protected int maxProxyRequestCount = DEFAULT_MAX_PROXY_REQUEST_COUNT;
+    
 }
